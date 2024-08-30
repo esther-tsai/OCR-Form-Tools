@@ -24,7 +24,6 @@ import {
 import { StorageProviderFactory } from "../../../../providers/storage/storageProviderFactory";
 import { decryptProject } from "../../../../common/utils";
 import { toast } from "react-toastify";
-import { SkipButton } from "../../shell/skipButton";
 
 export interface IHomePageProps extends RouteComponentProps, React.Props<HomePage> {
     recentProjects: IProject[];
@@ -69,13 +68,11 @@ export default class HomePage extends React.Component<IHomePageProps, IHomePageS
     private cloudFilePickerRef = React.createRef<CloudFilePicker>();
 
     public async componentDidMount() {
-        this.props.appTitleActions.setTitle("Welcome");
-        this.newProjectRef.current.focus();
+        this.props.appTitleActions.setTitle("FoTT for v2.0 has been deprecated");
         document.title = strings.homePage.title + " - " + strings.appName;
     }
 
     public async componentDidUpdate() {
-        this.newProjectRef.current.focus();
     }
 
     public render() {
@@ -83,7 +80,7 @@ export default class HomePage extends React.Component<IHomePageProps, IHomePageS
             <div className="app-homepage" id="pageHome">
                 <div className="app-homepage-main">
                     <div className="app-banner">
-                        <span className="highlight-white">Please note that this FoTT site is deprecating <b>by Oct 31, 2024</b> while API support for Form Recognizer v2.0 still continues.</span>
+                        <span className="highlight-white">Please note that this FoTT site has been deprecated <b>since Nov 1, 2024</b> while API support for Form Recognizer v2.0 still continues.</span>
                         <br /><br />
                         <span>
                             <span>Please use </span>
@@ -101,48 +98,7 @@ export default class HomePage extends React.Component<IHomePageProps, IHomePageS
                             <a href="https://aka.ms/FoTTv20Alternative">docker image</a>.
                         </span>
                     </div>
-                    <ul>
-                        <li>
-                            {/* eslint-disable-next-line */}
-                            <a ref={this.newProjectRef}
-                                id="home_newProject"
-                                href="#" onClick={this.createNewProject} className="p-5 new-project skipToMainContent" role="button">
-                                <FontIcon iconName="AddTo" className="icon-9x"  />
-                                <div>{strings.homePage.newProject}</div>
-                            </a>
-                        </li>
-                        <li>
-                            {/*Open Cloud Project*/}
-                            {/* eslint-disable-next-line */}
-                            <a href="#" onClick={this.handleOpenCloudProjectClick}
-                                className="p-5 cloud-open-project" role="button">
-                                <FontIcon iconName="Cloud" className="icon-9x" />
-                                <div>{strings.homePage.openCloudProject.title}</div>
-                            </a>
-                            <CloudFilePicker
-                                ref={this.cloudFilePickerRef}
-                                connections={this.props.connections}
-                                onSubmit={(content) => this.loadSelectedProject(JSON.parse(content))}
-                                fileExtension={constants.projectFileExtension}
-                            />
-                        </li>
-                    </ul>
                 </div>
-                {(this.props.recentProjects && this.props.recentProjects.length > 0) &&
-                    <div className="app-homepage-recent bg-lighter-1">
-                        <CondensedList
-                            title={strings.homePage.recentProjects}
-                            Component={RecentProjectItem}
-                            items={this.props.recentProjects}
-                            onClick={this.freshLoadSelectedProject}
-                            onDelete={(project) => this.deleteConfirmRef.current.open(project)} />
-                    </div>
-                }
-                <Confirm title="Delete Project"
-                    ref={this.deleteConfirmRef as any}
-                    message={(project: IProject) => `${strings.homePage.deleteProject.confirmation} ${project.name}?`}
-                    confirmButtonTheme={getPrimaryRedTheme()}
-                    onConfirm={this.deleteProject} />
             </div>
         );
     }

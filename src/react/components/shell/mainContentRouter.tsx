@@ -9,7 +9,6 @@ import TrainPage from "../pages/train/trainPage";
 import ConnectionPage from "../pages/connections/connectionsPage";
 import EditorPage from "../pages/editorPage/editorPage";
 import ProjectSettingsPage from "../pages/projectSettings/projectSettingsPage";
-import { PredictPageRoute } from './preditcPageRoute';
 
 
 /**
@@ -32,7 +31,6 @@ export function MainContentRouter() {
                 <Route path="/projects/:projectId/settings" component={ProjectSettingsPage} />
                 <Route component={HomePage} />
             </Switch>
-            <PredictPageRoute />
         </div>
     );
 }
