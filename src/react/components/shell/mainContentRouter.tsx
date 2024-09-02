@@ -10,7 +10,6 @@ import ConnectionPage from "../pages/connections/connectionsPage";
 import EditorPage from "../pages/editorPage/editorPage";
 import ProjectSettingsPage from "../pages/projectSettings/projectSettingsPage";
 import ModelComposePage from "../pages/modelCompose/modelCompose";
-import {PredictPageRoute} from './preditcPageRoute';
 import {PrebuiltPredictPage} from "../pages/prebuiltPredict/prebuiltPredictPage";
 import {LayoutPredictPage} from "../pages/prebuiltPredict/layoutPredictPage";
 
@@ -38,7 +37,6 @@ export function MainContentRouter() {
                 <Route path="/layout-analyze" component={LayoutPredictPage} />
                 <Route component={HomePage} />
             </Switch>
-            <PredictPageRoute />
         </div>
     );
 }

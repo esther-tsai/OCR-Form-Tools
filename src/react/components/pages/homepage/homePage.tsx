@@ -75,7 +75,7 @@ export default class HomePage extends React.Component<IHomePageProps, IHomePageS
     private importConfirmRef: React.RefObject<Confirm> = React.createRef();
 
     public async componentDidMount() {
-        this.props.appTitleActions.setTitle("Welcome");
+        this.props.appTitleActions.setTitle("FoTT for v2.1 has been deprecated");
         document.title = strings.homePage.title + " - " + strings.appName;
     }
 
@@ -84,7 +84,7 @@ export default class HomePage extends React.Component<IHomePageProps, IHomePageS
             <div className="app-homepage" id="pageHome">
                 <div className="app-homepage-main">
                     <div className="app-banner">
-                    <span className="highlight-white">Please note that this FoTT site is deprecating <b>by Oct 31, 2024</b> while API support for Form Recognizer v2.1 still continues until Sep 15, 2027.</span>
+                    <span className="highlight-white">Please note that this FoTT site has been deprecated <b>since Nov. 1, 2024</b> while API support for Form Recognizer v2.1 still continues until Sep. 15, 2027.</span>
                     <br /><br />
                         <span>
                             <span>Please use </span>
@@ -102,114 +102,7 @@ export default class HomePage extends React.Component<IHomePageProps, IHomePageS
                             <a href="https://aka.ms/FoTTv21Alternative">electron app</a>.
                         </span>
                     </div>
-                    <ul>
-                        <li>
-                            <a id="home_prebuilt"
-                                onClick={this.onPrebuiltClicked}
-                                className="primary-link"
-                                role="button">
-                                <FontIcon iconName="ContactCard" className="icon-7x" />
-                                <div className="title">{strings.homePage.prebuiltPredict.title}</div>
-                                <div className="description">{strings.homePage.prebuiltPredict.description}</div>
-                            </a>
-                            <a className="quickstart"
-                                href="https://aka.ms/form-recognizer/pre-built"
-                                target="_blank"
-                                rel="noopener noreferrer">
-                                <FontIcon iconName="Rocket" />{strings.homePage.quickStartGuide}</a>
-                        </li>
-                        <li>
-                            <a onClick={this.onUseLayoutToGetTextAndTAblesClicked}
-                                className="primary-link"
-                                role="button">
-                                <FontIcon iconName="KeyPhraseExtraction" className="icon-7x" />
-                                <div className="title">{strings.homePage.layoutPredict.title}</div>
-                                <div className="description">
-                                    {strings.homePage.layoutPredict.description}
-                                </div>
-                            </a>
-                            <a className="quickstart"
-                                href="https://aka.ms/form-recognizer/layout"
-                                target="_blank"
-                                rel="noopener noreferrer">
-                                <FontIcon iconName="Rocket" />{strings.homePage.quickStartGuide}</a>
-                        </li>
-                        <li>
-                            <a onClick={this.onTrainAndUseAModelWithLables}
-                                className="primary-link"
-                                role="button">
-                                <FontIcon iconName="AddTo" className="icon-7x" />
-                                <div className="title">{strings.homePage.trainWithLabels.title}</div>
-                                <div className="description">
-                                    {strings.homePage.trainWithLabels.description}
-                                </div>
-                            </a>
-                            <a className="quickstart"
-                                href="https://aka.ms/form-recognizer/custom"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            ><FontIcon iconName="Rocket" />{strings.homePage.quickStartGuide}</a>
-                        </li>
-                        <CloudFilePicker
-                            ref={this.cloudFilePickerRef}
-                            connections={this.props.connections}
-                            onSubmit={this.onCloudPickerClick}
-                            fileExtension={constants.projectFileExtension}
-                        />
-                    </ul>
                 </div>
-                {(this.props.recentProjects && this.props.recentProjects.length > 0) &&
-                    <div className="app-homepage-recent bg-lighter-1">
-                        <div className="app-homepage-open-cloud-project" role="button"
-                            onClick={this.createNewProject}>
-                            <FontIcon iconName="AddTo" className="icon" />
-                            <span className="title">{strings.homePage.newProject}</span>
-                        </div>
-                        {isElectron() &&
-                            <>
-                                <div className="app-homepage-open-cloud-project" role="button"
-                                    onClick={() => this.filePicker.current.upload()}>
-                                    <FontIcon iconName="System" className="icon" />
-                                    <span className="title">{strings.homePage.openLocalProject.title}</span>
-                                </div>
-                                <FilePicker ref={this.filePicker}
-                                    onChange={this.onProjectFileUpload}
-                                    onError={this.onProjectFileUploadError}
-                                    accept={[".fott"]}
-                                />
-                            </>
-                        }
-                        <div className="app-homepage-open-cloud-project" role="button"
-                            onClick={this.onOpenCloudProjectClick}>
-                            <FontIcon iconName="Cloud" className="icon" />
-                            <span className="title">{strings.homePage.openCloudProject.title}</span>
-                        </div>
-                        <CondensedList
-                            title={strings.homePage.recentProjects}
-                            Component={RecentProjectItem}
-                            items={this.props.recentProjects}
-                            onClick={this.freshLoadSelectedProject}
-                            onDelete={(project) => this.deleteConfirmRef.current.open(project)} />
-                    </div>
-                }
-                <Confirm title="Delete Project"
-                    ref={this.deleteConfirmRef as any}
-                    message={(project: IProject) => `${strings.homePage.deleteProject.confirmation} ${project.name}?`}
-                    confirmButtonTheme={getPrimaryRedTheme()}
-                    onConfirm={this.deleteProject} />
-
-                <HomeProjectView
-                    ref={this.homeProjectViewRef}
-                    recentProjects={this.props.recentProjects}
-                    connections={this.props.connections}
-                    createNewProject={this.createNewProject}
-                    onProjectFileUpload={this.onProjectFileUploadError}
-                    onProjectFileUploadError={this.onProjectFileUploadError}
-                    onOpenCloudProjectClick={this.onOpenCloudProjectClick}
-                    loadSelectedProject={this.loadSelectedProject}
-                    freshLoadSelectedProject={this.freshLoadSelectedProject}
-                    deleteProject={this.deleteProject}
-                />
             </div>
         );
     }
