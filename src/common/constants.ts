@@ -25,11 +25,11 @@ export const constants = {
     apiModelsPath: "/formrecognizer/v2.0/custom/models",
 
     pdfjsWorkerSrc(version: string) {
-        return `//fotts.azureedge.net/npm/pdfjs-dist/${version}/pdf.worker.js`;
+        return `/pdfjs-dist/${version}/pdf.worker.js`;
     },
 
     pdfjsCMapUrl(version: string) {
-        return `//fotts.azureedge.net/npm/pdfjs-dist/${version}/cmaps/`;
+        return `/pdfjs-dist/${version}/cmaps/`;
     },
     insightsKey: "",
 };
